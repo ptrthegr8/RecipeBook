@@ -1,0 +1,12 @@
+<head>
+    <base href='http://127.0.0.1:8000'>
+</head>
+<body>
+    <h3>{{ author.0.Name }}</h3>
+    <p>{{  author.0.Bio }}</p>
+    <ul>
+        {% for item in data %}
+            <li><a href='/recipes/{{ item.id }}/'>{{item.Title}}</a></li>
+        {% endfor %}
+    </ul>
+</body>

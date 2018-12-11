@@ -1,0 +1,12 @@
+<head>
+    <base href='http://127.0.0.1:8000'>
+</head>
+<body>
+    <h3>{{ data.0.Title }}</h3>
+    <h4><a href='/authors/{{ data.0.Author.id }}'>{{ data.0.Author }}</a></h4>
+    <p>{{ data.0.Description }}</p>
+    <br>
+    <p>{{ data.0.Time_Required }}</p>
+    <br>
+    <p>{{ data.0.Instructions }}</p>
+</body>
