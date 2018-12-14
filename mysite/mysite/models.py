@@ -1,13 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Author(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE)
     Name = models.CharField(max_length=50)
     Bio = models.TextField(max_length=300)
+    Favorites = models.ManyToManyField('Recipe', symmetrical=False, blank=True)
 
     def __str__(self):
         return self.Name
+
 
 class Recipe(models.Model):
     Title = models.CharField(max_length=100)

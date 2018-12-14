@@ -1,12 +1,26 @@
 <head>
-    <base href='http://127.0.0.1:8000'>
+  <base href="http://127.0.0.1:8000" />
 </head>
 <body>
-    <h3>{{ author.0.Name }}</h3>
-    <p>{{  author.0.Bio }}</p>
+  <h3>{{ author.Name }}</h3>
+  <p>{{ author.Bio }}</p>
+  <h4>Author's Recipes:</h4>
+  <ul>
+    {% for item in data %}
+    <li>
+      <a href="/recipes/{{ item.id }}/">{{ item.Title }}</a>
+    </li>
+    {% endfor %}
+    <h1>Favorites:</h1>
+    {% for f in author_favorites %}
     <ul>
-        {% for item in data %}
-            <li><a href='/recipes/{{ item.id }}/'>{{item.Title}}</a></li>
-        {% endfor %}
+      <li><a href="/recipes/{{f.id}}">{{ f }}</a></li>
+      <ul>
+        <li>
+          <a href="/authors/{{f.Author.id}}/">{{ f.Author }}</a>
+        </li>
+      </ul>
     </ul>
+    {% endfor %}
+  </ul>
 </body>

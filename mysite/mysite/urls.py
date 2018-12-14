@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from mysite.views import *
+from mysite import views
 from mysite.models import Author, Recipe
 from django.contrib.auth.views import LogoutView
 from mysite.settings import LOGOUT_REDIRECT_URL
@@ -25,12 +25,14 @@ admin.site.register(Recipe)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', recipe_views, name='homepage'),
-    path('authors/<int:id>/', author_views),
-    path('recipes/<int:id>/', individual_views),
+    path('', views.recipe_views, name='homepage'),
+    path('authors/<int:id>/', views.author_views),
+    path('recipes/<int:id>/', views.individual_views),
     # path('add_author/', get_author),
-    path('add_recipe/', get_recipe),
-    path('signup/', signup_view),
-    path('login/', login_view),
-    path('logout/', logout_view, name='logout')
+    path('add_recipe/', views.get_recipe),
+    path('signup/', views.signup_view),
+    path('login/', views.login_view),
+    path('logout/', views.logout_view, name='logout'),
+    path('edit_recipe/<int:id>', views.edit_recipe),
+    path('favorite/<int:id>/', views.favorite_view)
 ]

@@ -9,4 +9,14 @@
     <p>{{ data.0.Time_Required }}</p>
     <br>
     <p>{{ data.0.Instructions }}</p>
+    {% if user.is_authenticated %}
+        <form action="/favorite/{{ data.0.id }}/" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="item_id"" value="{{ data.0.id }}" />
+          <input type="submit" value="Favorite" />
+        </form>
+    {% endif %}
+    {% if is_current_user or user.is_superuser %}
+    <a href="/edit_recipe/{{ data.0.id }}"> <button>Edit</button></a>
+    {% endif %}
 </body>
